@@ -62,9 +62,4 @@ The application processes financial transaction data sent via HTTP POST requests
 - Node.js and npm installed
 - Serverless Framework installed
 
-### Installation
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/financial-record.git
-   cd financial-record
