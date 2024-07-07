@@ -1,1 +1,34 @@
 
+service: financial-record
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+functions:
+  processTransaction:
+    handler: handler.processTransaction
+    events:
+      - http:
+          path: transaction
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    TransactionTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Transactions
+        AttributeDefinitions:
+          - AttributeName: transactionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: transactionId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
